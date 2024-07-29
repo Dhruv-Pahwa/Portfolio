@@ -1,0 +1,107 @@
+# graph={
+#     '5':['3','7'],
+#     '3':['2','4'],
+#     '7':['8'],
+#     '2':[],
+#     '4':['8'],
+#     '8':[]
+# }
+
+# visited=set()
+# def dfs(visited,graph,node):
+#     if node not in visited:
+#         print(node,end="->")
+#         visited.add(node)
+#         for neighbour in graph[node]:
+#             dfs(visited,graph,neighbour)
+
+# print("DFS")
+# dfs(visited,graph,'5')
+
+# graph = {
+#     '5': ['3', '7'],
+#     '3': ['2', '4'],
+#     '7': ['8'],
+#     '2': [],
+#     '4': ['8'],
+#     '8': []
+# }
+
+# visited = set()
+# path_counter = [0]  # Using a list to make it mutable in the recursive function
+
+# def dfs(visited, graph, node):
+#     if node not in visited:
+#         print(node, end="->")
+#         visited.add(node)
+#         if not graph[node]:  # If the node has no neighbours
+#             path_counter[0] += 1
+#         for neighbour in graph[node]:
+#             dfs(visited, graph, neighbour)
+#             # To allow for other paths, remove the node from the visited set after returning
+#             visited.remove(neighbour)
+
+# i=input("Enter node you want to search from: ")
+# print("FOR DFS")
+# print("One of the combination is: ")
+# dfs(visited, graph, i)
+# print("END")
+# print(f"Total combinations: {path_counter[0]}")
+
+# graph = {
+#     '5': ['3', '7'],
+#     '3': ['2', '4'],
+#     '7': ['8'],
+#     '2': [],
+#     '4': ['8'],
+#     '8': []
+# }
+
+# def dfs(graph, node, visited, path_counter):
+#     visited.append(node)
+#     if not graph[node]:  # If the node has no neighbours
+#         path_counter[0] += 1
+#         print("->".join(visited))
+#     else:
+#         for neighbour in graph[node]:
+#             if neighbour not in visited:
+#                 dfs(graph, neighbour, visited, path_counter)
+#     visited.pop()  # Remove the node to allow other paths to explore this node again
+
+# start_node = input("Enter the starting node: ")
+
+# visited = []
+# path_counter = [0]  # Using a list to make it mutable in the recursive function
+
+# print("DFS Paths:")
+# dfs(graph, start_node, visited, path_counter)
+# print(f"\nTotal combinations: {path_counter[0]}")
+
+graph = {
+    '5': ['3', '7'],
+    '3': ['2', '4'],
+    '7': ['8'],
+    '2': [],
+    '4': ['8'],
+    '8': []
+}
+
+def dfs(graph, node, visited, path_counter):
+    visited.append(node)
+    if not graph[node]:  # If the node has no neighbours
+        path_counter[0] += 1
+        print("->".join(visited))
+    else:
+        for neighbour in graph[node]:
+            dfs(graph, neighbour, visited, path_counter)
+    visited.pop()  # Remove the node to allow other paths to explore this node again
+
+start_node = input("Enter the starting node: ")
+
+visited = []
+path_counter = [0]  # Using a list to make it mutable in the recursive function
+
+print("DFS Paths:")
+dfs(graph, start_node, visited, path_counter)
+print(f"\nTotal combinations: {path_counter[0]}")
+
